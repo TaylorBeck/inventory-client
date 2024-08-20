@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import SideLayout from "@/app/SideLayout";
+import DashboardWrapper from "@/app/dashboardWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SideLayout>
+        <DashboardWrapper>
           {children}
-        </SideLayout>
+        </DashboardWrapper>
       </body>
     </html>
   );
