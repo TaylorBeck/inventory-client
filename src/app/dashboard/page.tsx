@@ -1,8 +1,9 @@
-"use client"
+'use client';
 
-import CardPopularProducts from "./CardPopularProducts";
-import CardSalesSummary from "./CardSalesSummary";
-import CardPurchaseSummary from "./CardPurchaseSummary";
+import CardPopularProducts from './CardPopularProducts';
+import CardSalesSummary from './CardSalesSummary';
+import CardPurchaseSummary from './CardPurchaseSummary';
+import CardExpenseSummary from './CardExpenseSummary';
 
 const Dashboard = () => {
   return (
@@ -15,7 +16,7 @@ const Dashboard = () => {
       <div className="md:row-span-1 xl:row-span-2 bg-gray-400" />
       <div className="md:row-span-1 xl:row-span-2 bg-gray-400" />
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;

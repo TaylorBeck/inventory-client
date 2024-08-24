@@ -1,5 +1,6 @@
+import React, { useState } from 'react';
+
 import { useGetDashboardMetricsQuery } from '@/state/api';
-import React, { useState } from 'react'
 
 import {
   Bar,
@@ -9,19 +10,19 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
 
-import { TrendingUp } from "lucide-react";
+import { TrendingUp } from 'lucide-react';
 
 const CardSalesSummary = () => {
   const { data, isLoading, isError } = useGetDashboardMetricsQuery();
   const salesData = data?.salesSummary || [];
-  
-  const [timeFrame, setTimeFrame] = useState("weekly");
+
+  const [timeFrame, setTimeFrame] = useState('weekly');
 
   const totalValueSum =
     salesData.reduce((accumulator, current) => {
-      return accumulator + current.totalValue
+      return accumulator + current.totalValue;
     }, 0) || 0;
 
   const averageChangePercentage =
@@ -35,20 +36,18 @@ const CardSalesSummary = () => {
 
   const highestValueDate = highestValueData.date
     ? new Date(highestValueData.date).toLocaleDateString('en-us', {
-        month: "numeric",
-        day: "numeric",
-        year: "2-digit",
+        month: 'numeric',
+        day: 'numeric',
+        year: '2-digit',
       })
     : 'N/A';
 
   if (isError) {
-    return <div className="m-5">
-      Failed to fetch sales summary data
-    </div>
+    return <div className="m-5">Failed to fetch sales summary data</div>;
   }
 
   return (
-    <div className="flex flex-col justify-between row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl pb-16">
+    <div className="flex flex-col justify-between row-span-3 xl:row-span-6 bg-white shadow-md rounded-2xl pb-2">
       {isLoading ? (
         <div className="m-5">Loading...</div>
       ) : (
@@ -57,14 +56,13 @@ const CardSalesSummary = () => {
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
               Sales Summary
             </h2>
+            <hr />
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-6 px-7 mt-5">
               <div className="text-lg font-medium">
-                <p className="text-xs text-gray-400">
-                  Value
-                </p>
+                <p className="text-xs text-gray-400">Value</p>
                 <span className="text-2xl font-extrabold">
                   $
                   {(totalValueSum / 1000000).toLocaleString('en', {
@@ -80,8 +78,8 @@ const CardSalesSummary = () => {
               <select
                 className="shadow-sm border border-gray-300 bg-white p-2 rounded"
                 value={timeFrame}
-                onChange={(event) => {
-                  setTimeFrame(event.target.value) 
+                onChange={event => {
+                  setTimeFrame(event.target.value);
                 }}
               >
                 <option value="daily">Daily</option>
@@ -91,21 +89,28 @@ const CardSalesSummary = () => {
             </div>
 
             {/* CHART */}
-            <ResponsiveContainer width="100%" height={350} className="px-7">
+            <ResponsiveContainer
+              width="100%"
+              height={350}
+              className="px-7"
+            >
               <BarChart
                 data={salesData}
                 margin={{ top: 0, right: 0, left: -25, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray="" vertical={false} />
+                <CartesianGrid
+                  strokeDasharray=""
+                  vertical={false}
+                />
                 <XAxis
                   dataKey="date"
-                  tickFormatter={(value) => {
+                  tickFormatter={value => {
                     const date = new Date(value);
                     return `${date.getMonth() + 1}/${date.getDate()}`;
                   }}
                 />
                 <YAxis
-                  tickFormatter={(value) => {
+                  tickFormatter={value => {
                     return `$${(value / 1000000).toFixed(0)}m`;
                   }}
                   tick={{ fontSize: 12, dx: -1 }}
@@ -116,7 +121,7 @@ const CardSalesSummary = () => {
                   formatter={(value: number) => [
                     `$${value.toLocaleString('en')}`,
                   ]}
-                  labelFormatter={(label) => {
+                  labelFormatter={label => {
                     const date = new Date(label);
                     return date.toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -140,7 +145,7 @@ const CardSalesSummary = () => {
             <div className="flex justify-between items-center mt-6 text-sm px-7 mb-4">
               <p>{salesData.length || 0} days</p>
               <p className="text-sm">
-                Highest Sales Date: {' '}
+                Highest Sales Date:{' '}
                 <span className="font-bold">{highestValueDate}</span>
               </p>
             </div>

@@ -1,7 +1,8 @@
 import React from 'react';
-import numeral from 'numeral';
 
+import numeral from 'numeral';
 import { useGetDashboardMetricsQuery } from '@/state/api';
+
 import { TrendingDown, TrendingUp } from 'lucide-react';
 import {
   Area,
@@ -29,6 +30,7 @@ const CardPurchaseSummary = () => {
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
               Purchase Summary
             </h2>
+            <hr />
           </div>
 
           <div>
@@ -68,7 +70,12 @@ const CardPurchaseSummary = () => {
             >
               <AreaChart
                 data={purchaseData}
-                margin={{ top: 0, right: 0, left: -50, bottom: 45 }}
+                margin={{
+                  top: 0,
+                  right: 0,
+                  left: -50,
+                  bottom: 45,
+                }}
               >
                 <XAxis
                   dataKey="date"
@@ -84,7 +91,7 @@ const CardPurchaseSummary = () => {
                   formatter={(value: number) => [
                     `$${value.toLocaleString('en')}`,
                   ]}
-                  labelFormatter={(label) => {
+                  labelFormatter={label => {
                     const date = new Date(label);
                     return date.toLocaleDateString('en-US', {
                       year: 'numeric',

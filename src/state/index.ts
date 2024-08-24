@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface InitialStateTypes {
-  isSidebarCollapsed: boolean,
-  isDarkMode: boolean,
-};
+  isSidebarCollapsed: boolean;
+  isDarkMode: boolean;
+}
 
 const initialState: InitialStateTypes = {
   isSidebarCollapsed: false,
@@ -20,7 +20,7 @@ export const globalSlice = createSlice({
     setIsDarkMode: (state, action: PayloadAction<boolean>) => {
       state.isDarkMode = action.payload;
     },
-  }
+  },
 });
 
 export const { setIsSidebarCollapsed, setIsDarkMode } = globalSlice.actions;

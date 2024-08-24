@@ -1,19 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
-import { Bell, Menu, Moon, Settings, Sun } from 'lucide-react'
-import Link from 'next/link'
-import { setIsDarkMode, setIsSidebarCollapsed } from '@/state'
-import { useAppDispatch, useAppSelector } from '@/app/redux'
+import Link from 'next/link';
+
+import { Bell, Menu, Moon, Settings, Sun } from 'lucide-react';
+import { setIsDarkMode, setIsSidebarCollapsed } from '@/state';
+import { useAppDispatch, useAppSelector } from '@/app/redux';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-  const isSidebarCollapsed = useAppSelector((state) => state.global.isSidebarCollapsed);
-  const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+  const isSidebarCollapsed = useAppSelector(
+    state => state.global.isSidebarCollapsed
+  );
+  const isDarkMode = useAppSelector(state => state.global.isDarkMode);
 
   const toggleSidebar = () => {
-    dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))
+    dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
   };
 
   const toggleDarkMode = () => {
@@ -30,8 +33,7 @@ const Navbar = () => {
         >
           <Menu className="w-4 h-4" />
         </button>
-      
-      
+
         <div className="relative">
           <input
             type="search"
@@ -40,7 +42,10 @@ const Navbar = () => {
           />
 
           <div className="flex items-center absolute inset-y-0 left-0 pl-3 pointer-events-none">
-            <Bell className="text-gray-500" size={20} />
+            <Bell
+              className="text-gray-500"
+              size={20}
+            />
           </div>
         </div>
       </div>
@@ -51,33 +56,43 @@ const Navbar = () => {
           <div>
             <button onClick={toggleDarkMode}>
               {isDarkMode ? (
-                <Moon className="cursor-pointer text-gray-500" size={24} />
-              ): (
-                <Sun className="cursor-pointer text-gray-500" size={24} />
+                <Moon
+                  className="cursor-pointer text-gray-500"
+                  size={24}
+                />
+              ) : (
+                <Sun
+                  className="cursor-pointer text-gray-500"
+                  size={24}
+                />
               )}
             </button>
           </div>
           <div className="relative">
-            <Bell className="cursor-pointer text-gray-500" size={24} />
+            <Bell
+              className="cursor-pointer text-gray-500"
+              size={24}
+            />
             <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-[0.4rem] py-1 text-xs font-semibold leading-none text-red-100 bg-red-400 rounded-full">
               5
             </span>
           </div>
           <hr className="w-0 h-7 border border-solid border-l border-gray-300 mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
-            <div className="w-9 h-9">
-              image
-            </div>
+            <div className="w-9 h-9">image</div>
             <span className="font-semibold">Taylor Beck</span>
           </div>
         </div>
 
         <Link href="/settings">
-          <Settings className="cursor-pointer text-gray-500" size={24} />
+          <Settings
+            className="cursor-pointer text-gray-500"
+            size={24}
+          />
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
