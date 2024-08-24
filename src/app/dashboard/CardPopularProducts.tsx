@@ -14,10 +14,13 @@ const CardPopularProducts = () => {
         <div className="m-5">Loading...</div>
       ) : (
         <>
+          {/* TITLE */}
           <h3 className="text-lg font-semibold px-7 pt-5 pb-2">
             Popular Products
           </h3>
           <hr />
+
+          {/* CONTENT */}
           <div className="overflow-auto h-full">
             {dashboardMetrics?.popularProducts.map(product => (
               <div
