@@ -63,52 +63,55 @@ const CardPurchaseSummary = () => {
             </div>
 
             {/* CHART */}
-            <ResponsiveContainer
-              width="100%"
-              height={350}
-              className="px-7"
-            >
-              <AreaChart
-                data={purchaseData}
-                margin={{
-                  top: 0,
-                  right: 0,
-                  left: -50,
-                  bottom: 45,
-                }}
+            <div className="w-full h-[300px] md:h-[240px] xl:h-[140px]">
+              <ResponsiveContainer
+                width="100%"
+                height="100%"
+                className="p-2"
+                minHeight={140}
               >
-                <XAxis
-                  dataKey="date"
-                  tick={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  tick={false}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Tooltip
-                  formatter={(value: number) => [
-                    `$${value.toLocaleString('en')}`,
-                  ]}
-                  labelFormatter={label => {
-                    const date = new Date(label);
-                    return date.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    });
+                <AreaChart
+                  data={purchaseData}
+                  margin={{
+                    top: 0,
+                    right: 0,
+                    left: -50,
+                    bottom: 0,
                   }}
-                />
-                <Area
-                  type="linear"
-                  dataKey="totalPurchased"
-                  stroke="#8884D8"
-                  fill="#8884D8"
-                  dot={true}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+                >
+                  <XAxis
+                    dataKey="date"
+                    tick={false}
+                    axisLine={false}
+                  />
+                  <YAxis
+                    tick={false}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <Tooltip
+                    formatter={(value: number) => [
+                      `$${value.toLocaleString('en')}`,
+                    ]}
+                    labelFormatter={label => {
+                      const date = new Date(label);
+                      return date.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      });
+                    }}
+                  />
+                  <Area
+                    type="linear"
+                    dataKey="totalPurchased"
+                    stroke="#8884D8"
+                    fill="#8884D8"
+                    dot={true}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </>
       )}
