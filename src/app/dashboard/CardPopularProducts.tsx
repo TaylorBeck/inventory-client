@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useGetDashboardMetricsQuery } from '@/state/api';
 
 import { ShoppingBag } from 'lucide-react';
