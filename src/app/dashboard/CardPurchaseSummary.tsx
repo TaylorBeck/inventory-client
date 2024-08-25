@@ -65,9 +65,9 @@ const CardPurchaseSummary = () => {
             {/* CHART */}
             <div className="w-full h-[300px] md:h-[240px] xl:h-[140px]">
               <ResponsiveContainer
+                className="p-2 pr-4"
                 width="100%"
                 height="100%"
-                className="p-2"
                 minHeight={140}
               >
                 <AreaChart
