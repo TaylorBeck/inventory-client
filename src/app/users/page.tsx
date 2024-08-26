@@ -40,7 +40,7 @@ const Users = () => {
 
   return (
     <div className="flex flex-col">
-      <Header name="Inventory" />
+      <Header name="Users" />
       <DataGrid
         className="bg-white shadow rounded-xl border border-gray-200 mt-5 !text-gray-700"
         rows={users}
